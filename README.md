@@ -10,17 +10,13 @@ In the pursuit of transitioning to renewable energy sources, energy flexibility 
 
 ### Consumption increase
 
-$$
-R = \sum_{n}^{i} r_{i} \rightarrow r_{i} = \left\{\begin{matrix}val > 0 & -1\\ val = 0 & 1 \\ val < 0 & \frac{1}{abs(val)}\end{matrix}\right.
-\rightarrow val = cons_{exp} - cons_{real}
-$$
+$R = \sum_{n}^{i} r_{i} \rightarrow r_{i} = \left\{\begin{matrix}val > 0 & -1\\ val = 0 & 1 \\ val < 0 & \frac{1}{abs(val)}\end{matrix}\right.
+\rightarrow val = cons_{exp} - cons_{real}$
 
 ### Consumption reduce
 
-$$
-R = \sum_{n}^{i} r_{i} \rightarrow r_{i} = \left\{\begin{matrix}val > 0 & abs(\frac{val}{cons_{real}})\\ val = 0 & 0 \\ val < -1 & \end{matrix}\right.
-\rightarrow val = cons_{exp} - cons_{real}
-$$
+$R = \sum_{n}^{i} r_{i} \rightarrow r_{i} = \left\{\begin{matrix}val > 0 & abs(\frac{val}{cons_{real}})\\ val = 0 & 0 \\ val < 0 & -1 \end{matrix}\right.
+\rightarrow val = cons_{exp} - cons_{real}$
 
 ## Install requirements
 
