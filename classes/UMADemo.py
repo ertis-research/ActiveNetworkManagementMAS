@@ -13,7 +13,7 @@ class UMADemoINC(gym.Env):
         # Define action and observation space
         # They must be gym.gym.spaces objects
         # Example when using discrete actions:
-        self.action_space = gym.spaces.Discrete(50)
+        self.action_space = gym.spaces.Discrete(65)
         # Example for using image as input:
         self.obs_space = gym.spaces.Box(low=0, high=100, shape=(1,))
         #Current step
@@ -46,7 +46,6 @@ class UMADemoINC(gym.Env):
     def get_action_cons(self):
         return self.consumption
         
-        
     def step(self, action):
         # Execute one time step within the environment
         self.ac.turnOff()
@@ -54,9 +53,8 @@ class UMADemoINC(gym.Env):
         self.sb.stop()
         if self._episode_ended:
             self.reset()
-         # Do nothing.
+        #Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -64,150 +62,196 @@ class UMADemoINC(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #EV Charge
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #EV Charge
+        elif action == 4:
             c = self.cs.charge(1) + self.ac.turnOff()
         #EV Discharge
-        elif action == 4:
+        elif action == 5:
             c = self.cs.discharge(1) + self.ac.turnOff()
         #SB Charge20
-        elif action == 5:
+        elif action == 6:
             c = self.sb.charge20() + self.ac.turnOff()
         #SB Charge40
-        elif action == 6:
+        elif action == 7:
             c = self.sb.charge40() + self.ac.turnOff()
         #SB Charge60
-        elif action == 7:
+        elif action == 8:
             c = self.sb.charge60() + self.ac.turnOff()
         #SB Discharge20
-        elif action == 8:
+        elif action == 9:
             c = self.sb.discharge20() + self.ac.turnOff()
         #SB Discharge40
-        elif action == 9:
+        elif action == 10:
             c = self.sb.discharge40() + self.ac.turnOff()
         #SB Discharge60
-        elif action == 10:
+        elif action == 11:
             c = self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature and EV Charge
-        elif action == 11:
+        elif action == 12:
             c = self.ac.smallChange() + self.cs.charge(1)
         #Small Change Temperature and EV Discharge
-        elif action == 12:
+        elif action == 13:
             c = self.ac.smallChange() + self.cs.discharge(1)
         #Small Change Temperature and SB Charge20
-        elif action == 13:
+        elif action == 14:
             c = self.ac.smallChange() + self.sb.charge20()
         #Small Change Temperature and SB Charge40
-        elif action == 14:
+        elif action == 15:
             c = self.ac.smallChange() + self.sb.charge40()
         #Small Change Temperature and SB Charge20
-        elif action == 15:
+        elif action == 16:
             c = self.ac.smallChange() + self.sb.charge60()
         #Small Change Temperature and SB Discharge20
-        elif action == 16:
+        elif action == 17:
             c = self.ac.smallChange() + self.sb.discharge20()
         #Small Change Temperature and SB Discharge40
-        elif action == 17:
+        elif action == 18:
             c = self.ac.smallChange() + self.sb.discharge40()
         #Small Change Temperature and SB Discharge60
-        elif action == 18:
+        elif action == 19:
             c = self.ac.smallChange() + self.sb.discharge60()
         #Big Change Temperature and EV Charge
-        elif action == 19:
+        elif action == 20:
             c = self.ac.bigChange() + self.cs.charge(1)
         #Big Change Temperature and EV Discharge
-        elif action == 20:
+        elif action == 21:
             c = self.ac.bigChange() + self.cs.discharge(1)
         #Big Change Temperature and SB Charge20
-        elif action == 21:
+        elif action == 22:
             c = self.ac.bigChange() + self.sb.charge20()
         #Big Change Temperature and SB Charge40
-        elif action == 22:
+        elif action == 23:
             c = self.ac.bigChange() + self.sb.charge40()
         #Big Change Temperature and SB Charge60
-        elif action == 23:
+        elif action == 24:
             c = self.ac.bigChange() + self.sb.charge60()
         #Big Change Temperature and SB Discharge20
-        elif action == 24:
+        elif action == 25:
             c = self.ac.bigChange() + self.sb.discharge20()
         #Big Change Temperature and SB Discharge40
-        elif action == 25:
+        elif action == 26:
             c = self.ac.bigChange() + self.sb.discharge40()
         #Big Change Temperature and SB Discharge60
-        elif action == 26:
-            c = self.ac.bigChange() + self.sb.discharge60()
-        #EV Charge and SB Charge20
         elif action == 27:
+            c = self.ac.bigChange() + self.sb.discharge60()
+        #Huge Change Temperature and EV Charge
+        elif action == 28:
+            c = self.ac.hugeChange() + self.cs.charge(1)
+        #Huge Change Temperature and EV Discharge
+        elif action == 29:
+            c = self.ac.hugeChange() + self.cs.discharge(1)
+        #Huge Change Temperature and SB Charge20
+        elif action == 30:
+            c = self.ac.hugeChange() + self.sb.charge20()
+        #Huge Change Temperature and SB Charge40
+        elif action == 31:
+            c = self.ac.hugeChange() + self.sb.charge40()
+        #Huge Change Temperature and SB Charge60
+        elif action == 32:
+            c = self.ac.hugeChange() + self.sb.charge60()
+        #Huge Change Temperature and SB Discharge20
+        elif action == 33:
+            c = self.ac.hugeChange() + self.sb.discharge20()
+        #Huge Change Temperature and SB Discharge40
+        elif action == 34:
+            c = self.ac.hugeChange() + self.sb.discharge40()
+        #Huge Change Temperature and SB Discharge60
+        elif action == 35:
+            c = self.ac.hugeChange() + self.sb.discharge60()
+        #EV Charge and SB Charge20
+        elif action == 36:
             c = self.cs.charge(1) + self.sb.charge20() + self.ac.turnOff()
         #EV Charge and SB Charge40
-        elif action == 28:
+        elif action == 37:
             c = self.cs.charge(1) + self.sb.charge40() + self.ac.turnOff()
         #EV Charge and SB Charge60
-        elif action == 29:
+        elif action == 38:
             c = self.cs.charge(1) + self.sb.charge60() + self.ac.turnOff()
         #EV Charge and SB Discharge20
-        elif action == 30:
+        elif action == 39:
             c = self.cs.charge(1) + self.sb.discharge20() + self.ac.turnOff()
         #EV Charge and SB Discharge40
-        elif action == 31:
+        elif action == 40:
             c = self.cs.charge(1) + self.sb.discharge40() + self.ac.turnOff()
         #EV Charge and SB Discharge60
-        elif action == 32:
+        elif action == 41:
             c = self.cs.charge(1) + self.sb.discharge60() + self.ac.turnOff()
         #EV Discharge and SB Charge20
-        elif action == 33:
+        elif action == 42:
             c = self.cs.discharge(1) + self.sb.charge20() + self.ac.turnOff()
         #EV Discharge and SB Charge40
-        elif action == 34:
+        elif action == 43:
             c = self.cs.discharge(1) + self.sb.charge40() + self.ac.turnOff()
         #EV Discharge and SB Charge60
-        elif action == 35:
+        elif action == 44:
             c = self.cs.discharge(1) + self.sb.charge60() + self.ac.turnOff()
         #EV Discharge and SB Discharge20
-        elif action == 36:
+        elif action == 45:
             c = self.cs.discharge(1) + self.sb.discharge20() + self.ac.turnOff()
         #EV Discharge and SB Discharge40
-        elif action == 37:
+        elif action == 46:
             c = self.cs.discharge(1) + self.sb.discharge40() + self.ac.turnOff()
         #EV Discharge and SB Discharge60
-        elif action == 38:
+        elif action == 47:
             c = self.cs.discharge(1) + self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature, EV Charge and SB Charge20
-        elif action == 39:
+        elif action == 48:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge20()
         #Small Change Temperature, EV Charge and SB Charge40
-        elif action == 40:
+        elif action == 49:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge40()
         #Small Change Temperature, EV Charge and SB Charge60
-        elif action == 41:
+        elif action == 50:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge60()
         #Small Change Temperature, EV Charge and SB Discharge20
-        elif action == 42:
+        elif action == 51:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge20()
         #Small Change Temperature, EV Charge and SB Discharge40
-        elif action == 43:
+        elif action == 52:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge40()
         #Small Change Temperature, EV Charge and SB Discharge60
-        elif action == 44:
+        elif action == 53:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge60()
         #Big Change Temperature, EV Charge and SB Charge20
-        elif action == 45:
+        elif action == 54:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge20()
         #Big Change Temperature, EV Charge and SB Charge40
-        elif action == 46:
+        elif action == 55:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge40()
         #Big Change Temperature, EV Charge and SB Charge60
-        elif action == 47:
+        elif action == 56:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge60()
         #Big Change Temperature, EV Charge and SB Discharge20
-        elif action == 48:
+        elif action == 57:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge20()
         #Big Change Temperature, EV Charge and SB Discharge40
-        elif action == 49:
+        elif action == 58:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge40()
         #Big Change Temperature, EV Charge and SB Discharge60
-        elif action == 50:
+        elif action == 59:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge60()
+        #Huge Change Temperature, EV Charge and SB Charge20
+        elif action == 60:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge20()
+        #Huge Change Temperature, EV Charge and SB Charge40
+        elif action == 61:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge40()
+        #Huge Change Temperature, EV Charge and SB Charge60
+        elif action == 62:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge60()
+        #Huge Change Temperature, EV Charge and SB Discharge20
+        elif action == 63:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge20()
+        #Huge Change Temperature, EV Charge and SB Discharge40
+        elif action == 64:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge40()
+        #Huge Change Temperature, EV Charge and SB Discharge60
+        elif action == 65:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge60()
+
         val = self.objective_curve[self._state] + c
         self.consumption = c
         self.cumulative_consumption += -abs(val)
@@ -258,7 +302,7 @@ class UMADemoINC_No_Batteries(gym.Env):
         # Define action and observation space
         # They must be gym.gym.spaces objects
         # Example when using discrete actions:
-        self.action_space = gym.spaces.Discrete(8)
+        self.action_space = gym.spaces.Discrete(11)
         # Example for using image as input:
         self.obs_space = gym.spaces.Box(low=0, high=100, shape=(1,))
         #Current step
@@ -292,9 +336,8 @@ class UMADemoINC_No_Batteries(gym.Env):
         self.cs.stop()
         if self._episode_ended:
             self.reset()
-         # Do nothing.
+        #Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -302,24 +345,33 @@ class UMADemoINC_No_Batteries(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #EV Charge
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #EV Charge
+        elif action == 4:
             c = self.cs.charge(1) + self.ac.turnOff()
         #EV Discharge
-        elif action == 4:
+        elif action == 5:
             c = self.cs.discharge(1) + self.ac.turnOff()
         #Small Change Temperature and EV Charge
-        elif action == 5:
+        elif action == 6:
             c = self.ac.smallChange() + self.cs.charge(1)
         #Small Change Temperature and EV Discharge
-        elif action == 6:
+        elif action == 7:
             c = self.ac.smallChange() + self.cs.discharge(1)
         #Big Change Temperature and EV Charge
-        elif action == 7:
+        elif action == 8:
             c = self.ac.bigChange() + self.cs.charge(1)
         #Big Change Temperature and EV Discharge
-        elif action == 8:
+        elif action == 9:
             c = self.ac.bigChange() + self.cs.discharge(1)
+        #Huge Change Temperature and EV Charge
+        elif action == 10:
+            c = self.ac.hugeChange() + self.cs.charge(1)
+        #Huge Change Temperature and EV Discharge
+        elif action == 11:
+            c = self.ac.hugeChange() + self.cs.discharge(1)
             
         val = self.objective_curve[self._state] + c
         self.consumption = c
@@ -368,7 +420,7 @@ class UMADemoINC_No_Car(gym.Env):
         # Define action and observation space
         # They must be gym.gym.spaces objects
         # Example when using discrete actions:
-        self.action_space = gym.spaces.Discrete(21)
+        self.action_space = gym.spaces.Discrete(27)
         # Example for using image as input:
         self.obs_space = gym.spaces.Box(low=0, high=100, shape=(1,))
         #Current step
@@ -405,9 +457,8 @@ class UMADemoINC_No_Car(gym.Env):
         self.sb.stop()
         if self._episode_ended:
             self.reset()
-         # Do nothing.
+        #Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -415,60 +466,81 @@ class UMADemoINC_No_Car(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #SB Charge20
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #SB Charge20
+        elif action == 4:
             c = self.sb.charge20() + self.ac.turnOff()
         #SB Charge40
-        elif action == 4:
+        elif action == 5:
             c = self.sb.charge40() + self.ac.turnOff()
         #SB Charge60
-        elif action == 5:
+        elif action == 6:
             c = self.sb.charge60() + self.ac.turnOff()
         #SB Discharge20
-        elif action == 6:
+        elif action == 7:
             c = self.sb.discharge20() + self.ac.turnOff()
         #SB Discharge40
-        elif action == 7:
+        elif action == 8:
             c = self.sb.discharge40() + self.ac.turnOff()
         #SB Discharge60
-        elif action == 8:
+        elif action == 9:
             c = self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature and SB Charge20
-        elif action == 9:
+        elif action == 10:
             c = self.ac.smallChange() + self.sb.charge20()
         #Small Change Temperature and SB Charge40
-        elif action == 10:
+        elif action == 11:
             c = self.ac.smallChange() + self.sb.charge40()
         #Small Change Temperature and SB Charge20
-        elif action == 11:
+        elif action == 12:
             c = self.ac.smallChange() + self.sb.charge60()
         #Small Change Temperature and SB Discharge20
-        elif action == 12:
+        elif action == 13:
             c = self.ac.smallChange() + self.sb.discharge20()
         #Small Change Temperature and SB Discharge40
-        elif action == 13:
+        elif action == 14:
             c = self.ac.smallChange() + self.sb.discharge40()
         #Small Change Temperature and SB Discharge60
-        elif action == 14:
+        elif action == 15:
             c = self.ac.smallChange() + self.sb.discharge60()
         #Big Change Temperature and SB Charge20
-        elif action == 15:
+        elif action == 16:
             c = self.ac.bigChange() + self.sb.charge20()
         #Big Change Temperature and SB Charge40
-        elif action == 16:
+        elif action == 17:
             c = self.ac.bigChange() + self.sb.charge40()
         #Big Change Temperature and SB Charge60
-        elif action == 17:
+        elif action == 18:
             c = self.ac.bigChange() + self.sb.charge60()
         #Big Change Temperature and SB Discharge20
-        elif action == 18:
+        elif action == 19:
             c = self.ac.bigChange() + self.sb.discharge20()
         #Big Change Temperature and SB Discharge40
-        elif action == 19:
+        elif action == 20:
             c = self.ac.bigChange() + self.sb.discharge40()
         #Big Change Temperature and SB Discharge60
-        elif action == 20:
+        elif action == 21:
             c = self.ac.bigChange() + self.sb.discharge60()
+        #Huge Change Temperature and SB Charge20
+        elif action == 22:
+            c = self.ac.hugeChange() + self.sb.charge20()
+        #Huge Change Temperature and SB Charge40
+        elif action == 23:
+            c = self.ac.hugeChange() + self.sb.charge40()
+        #Huge Change Temperature and SB Charge60
+        elif action == 24:
+            c = self.ac.hugeChange() + self.sb.charge60()
+        #Huge Change Temperature and SB Discharge20
+        elif action == 25:
+            c = self.ac.hugeChange() + self.sb.discharge20()
+        #Huge Change Temperature and SB Discharge40
+        elif action == 26:
+            c = self.ac.hugeChange() + self.sb.discharge40()
+        #Huge Change Temperature and SB Discharge60
+        elif action == 27:
+            c = self.ac.hugeChange() + self.sb.discharge60()
         
         val = self.objective_curve[self._state] + c
         self.consumption = c
@@ -514,7 +586,7 @@ class UMADemoDEC(gym.Env):
         # Define action and observation space
         # They must be gym.gym.spaces objects
         # Example when using discrete actions:
-        self.action_space = gym.spaces.Discrete(50)
+        self.action_space = gym.spaces.Discrete(65)
         # Example for using image as input:
         self.obs_space = gym.spaces.Box(low=0, high=100, shape=(1,))
         #Current step
@@ -557,7 +629,6 @@ class UMADemoDEC(gym.Env):
             self.reset()
          # Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -565,150 +636,196 @@ class UMADemoDEC(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #EV Charge
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #EV Charge
+        elif action == 4:
             c = self.cs.charge(1) + self.ac.turnOff()
         #EV Discharge
-        elif action == 4:
+        elif action == 5:
             c = self.cs.discharge(1) + self.ac.turnOff()
         #SB Charge20
-        elif action == 5:
+        elif action == 6:
             c = self.sb.charge20() + self.ac.turnOff()
         #SB Charge40
-        elif action == 6:
+        elif action == 7:
             c = self.sb.charge40() + self.ac.turnOff()
         #SB Charge60
-        elif action == 7:
+        elif action == 8:
             c = self.sb.charge60() + self.ac.turnOff()
         #SB Discharge20
-        elif action == 8:
+        elif action == 9:
             c = self.sb.discharge20() + self.ac.turnOff()
         #SB Discharge40
-        elif action == 9:
+        elif action == 10:
             c = self.sb.discharge40() + self.ac.turnOff()
         #SB Discharge60
-        elif action == 10:
+        elif action == 11:
             c = self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature and EV Charge
-        elif action == 11:
+        elif action == 12:
             c = self.ac.smallChange() + self.cs.charge(1)
         #Small Change Temperature and EV Discharge
-        elif action == 12:
+        elif action == 13:
             c = self.ac.smallChange() + self.cs.discharge(1)
         #Small Change Temperature and SB Charge20
-        elif action == 13:
+        elif action == 14:
             c = self.ac.smallChange() + self.sb.charge20()
         #Small Change Temperature and SB Charge40
-        elif action == 14:
+        elif action == 15:
             c = self.ac.smallChange() + self.sb.charge40()
         #Small Change Temperature and SB Charge20
-        elif action == 15:
+        elif action == 16:
             c = self.ac.smallChange() + self.sb.charge60()
         #Small Change Temperature and SB Discharge20
-        elif action == 16:
+        elif action == 17:
             c = self.ac.smallChange() + self.sb.discharge20()
         #Small Change Temperature and SB Discharge40
-        elif action == 17:
+        elif action == 18:
             c = self.ac.smallChange() + self.sb.discharge40()
         #Small Change Temperature and SB Discharge60
-        elif action == 18:
+        elif action == 19:
             c = self.ac.smallChange() + self.sb.discharge60()
         #Big Change Temperature and EV Charge
-        elif action == 19:
+        elif action == 20:
             c = self.ac.bigChange() + self.cs.charge(1)
         #Big Change Temperature and EV Discharge
-        elif action == 20:
+        elif action == 21:
             c = self.ac.bigChange() + self.cs.discharge(1)
         #Big Change Temperature and SB Charge20
-        elif action == 21:
+        elif action == 22:
             c = self.ac.bigChange() + self.sb.charge20()
         #Big Change Temperature and SB Charge40
-        elif action == 22:
+        elif action == 23:
             c = self.ac.bigChange() + self.sb.charge40()
         #Big Change Temperature and SB Charge60
-        elif action == 23:
+        elif action == 24:
             c = self.ac.bigChange() + self.sb.charge60()
         #Big Change Temperature and SB Discharge20
-        elif action == 24:
+        elif action == 25:
             c = self.ac.bigChange() + self.sb.discharge20()
         #Big Change Temperature and SB Discharge40
-        elif action == 25:
+        elif action == 26:
             c = self.ac.bigChange() + self.sb.discharge40()
         #Big Change Temperature and SB Discharge60
-        elif action == 26:
-            c = self.ac.bigChange() + self.sb.discharge60()
-        #EV Charge and SB Charge20
         elif action == 27:
+            c = self.ac.bigChange() + self.sb.discharge60()
+        #Huge Change Temperature and EV Charge
+        elif action == 28:
+            c = self.ac.hugeChange() + self.cs.charge(1)
+        #Huge Change Temperature and EV Discharge
+        elif action == 29:
+            c = self.ac.hugeChange() + self.cs.discharge(1)
+        #Huge Change Temperature and SB Charge20
+        elif action == 30:
+            c = self.ac.hugeChange() + self.sb.charge20()
+        #Huge Change Temperature and SB Charge40
+        elif action == 31:
+            c = self.ac.hugeChange() + self.sb.charge40()
+        #Huge Change Temperature and SB Charge60
+        elif action == 32:
+            c = self.ac.hugeChange() + self.sb.charge60()
+        #Huge Change Temperature and SB Discharge20
+        elif action == 33:
+            c = self.ac.hugeChange() + self.sb.discharge20()
+        #Huge Change Temperature and SB Discharge40
+        elif action == 34:
+            c = self.ac.hugeChange() + self.sb.discharge40()
+        #Huge Change Temperature and SB Discharge60
+        elif action == 35:
+            c = self.ac.hugeChange() + self.sb.discharge60()
+        #EV Charge and SB Charge20
+        elif action == 36:
             c = self.cs.charge(1) + self.sb.charge20() + self.ac.turnOff()
         #EV Charge and SB Charge40
-        elif action == 28:
+        elif action == 37:
             c = self.cs.charge(1) + self.sb.charge40() + self.ac.turnOff()
         #EV Charge and SB Charge60
-        elif action == 29:
+        elif action == 38:
             c = self.cs.charge(1) + self.sb.charge60() + self.ac.turnOff()
         #EV Charge and SB Discharge20
-        elif action == 30:
+        elif action == 39:
             c = self.cs.charge(1) + self.sb.discharge20() + self.ac.turnOff()
         #EV Charge and SB Discharge40
-        elif action == 31:
+        elif action == 40:
             c = self.cs.charge(1) + self.sb.discharge40() + self.ac.turnOff()
         #EV Charge and SB Discharge60
-        elif action == 32:
+        elif action == 41:
             c = self.cs.charge(1) + self.sb.discharge60() + self.ac.turnOff()
         #EV Discharge and SB Charge20
-        elif action == 33:
+        elif action == 42:
             c = self.cs.discharge(1) + self.sb.charge20() + self.ac.turnOff()
         #EV Discharge and SB Charge40
-        elif action == 34:
+        elif action == 43:
             c = self.cs.discharge(1) + self.sb.charge40() + self.ac.turnOff()
         #EV Discharge and SB Charge60
-        elif action == 35:
+        elif action == 44:
             c = self.cs.discharge(1) + self.sb.charge60() + self.ac.turnOff()
         #EV Discharge and SB Discharge20
-        elif action == 36:
+        elif action == 45:
             c = self.cs.discharge(1) + self.sb.discharge20() + self.ac.turnOff()
         #EV Discharge and SB Discharge40
-        elif action == 37:
+        elif action == 46:
             c = self.cs.discharge(1) + self.sb.discharge40() + self.ac.turnOff()
         #EV Discharge and SB Discharge60
-        elif action == 38:
+        elif action == 47:
             c = self.cs.discharge(1) + self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature, EV Charge and SB Charge20
-        elif action == 39:
+        elif action == 48:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge20()
         #Small Change Temperature, EV Charge and SB Charge40
-        elif action == 40:
+        elif action == 49:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge40()
         #Small Change Temperature, EV Charge and SB Charge60
-        elif action == 41:
+        elif action == 50:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.charge60()
         #Small Change Temperature, EV Charge and SB Discharge20
-        elif action == 42:
+        elif action == 51:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge20()
         #Small Change Temperature, EV Charge and SB Discharge40
-        elif action == 43:
+        elif action == 52:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge40()
         #Small Change Temperature, EV Charge and SB Discharge60
-        elif action == 44:
+        elif action == 53:
             c = self.ac.smallChange() + self.cs.charge(1) + self.sb.discharge60()
         #Big Change Temperature, EV Charge and SB Charge20
-        elif action == 45:
+        elif action == 54:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge20()
         #Big Change Temperature, EV Charge and SB Charge40
-        elif action == 46:
+        elif action == 55:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge40()
         #Big Change Temperature, EV Charge and SB Charge60
-        elif action == 47:
+        elif action == 56:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.charge60()
         #Big Change Temperature, EV Charge and SB Discharge20
-        elif action == 48:
+        elif action == 57:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge20()
         #Big Change Temperature, EV Charge and SB Discharge40
-        elif action == 49:
+        elif action == 58:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge40()
         #Big Change Temperature, EV Charge and SB Discharge60
-        elif action == 50:
+        elif action == 59:
             c = self.ac.bigChange() + self.cs.charge(1) + self.sb.discharge60()
+        #Huge Change Temperature, EV Charge and SB Charge20
+        elif action == 60:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge20()
+        #Huge Change Temperature, EV Charge and SB Charge40
+        elif action == 61:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge40()
+        #Huge Change Temperature, EV Charge and SB Charge60
+        elif action == 62:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.charge60()
+        #Huge Change Temperature, EV Charge and SB Discharge20
+        elif action == 63:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge20()
+        #Huge Change Temperature, EV Charge and SB Discharge40
+        elif action == 64:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge40()
+        #Huge Change Temperature, EV Charge and SB Discharge60
+        elif action == 65:
+            c = self.ac.hugeChange() + self.cs.charge(1) + self.sb.discharge60()
+
         val = self.objective_curve[self._state] + c
         self.consumption = c
         self.cumulative_consumption += -abs(val)
@@ -759,7 +876,7 @@ class UMADemoDEC_No_Batteries(gym.Env):
         # Define action and observation space
         # They must be gym.gym.spaces objects
         # Example when using discrete actions:
-        self.action_space = gym.spaces.Discrete(8)
+        self.action_space = gym.spaces.Discrete(11)
         # Example for using image as input:
         self.obs_space = gym.spaces.Box(low=0, high=100, shape=(1,))
         #Current step
@@ -796,7 +913,6 @@ class UMADemoDEC_No_Batteries(gym.Env):
             self.reset()
          # Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -804,24 +920,33 @@ class UMADemoDEC_No_Batteries(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #EV Charge
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #EV Charge
+        elif action == 4:
             c = self.cs.charge(1) + self.ac.turnOff()
         #EV Discharge
-        elif action == 4:
+        elif action == 5:
             c = self.cs.discharge(1) + self.ac.turnOff()
         #Small Change Temperature and EV Charge
-        elif action == 5:
+        elif action == 6:
             c = self.ac.smallChange() + self.cs.charge(1)
         #Small Change Temperature and EV Discharge
-        elif action == 6:
+        elif action == 7:
             c = self.ac.smallChange() + self.cs.discharge(1)
         #Big Change Temperature and EV Charge
-        elif action == 7:
+        elif action == 8:
             c = self.ac.bigChange() + self.cs.charge(1)
         #Big Change Temperature and EV Discharge
-        elif action == 8:
+        elif action == 9:
             c = self.ac.bigChange() + self.cs.discharge(1)
+        #Huge Change Temperature and EV Charge
+        elif action == 10:
+            c = self.ac.hugeChange() + self.cs.charge(1)
+        #Huge Change Temperature and EV Discharge
+        elif action == 11:
+            c = self.ac.hugeChange() + self.cs.discharge(1)
             
         val = self.objective_curve[self._state] + c
         self.consumption = c
@@ -910,7 +1035,6 @@ class UMADemoDEC_No_Car(gym.Env):
             self.reset()
          # Do nothing.
         if action == 0:
-
             c = self.ac.turnOff()
         #Small change temperature
         elif action == 1:
@@ -918,60 +1042,81 @@ class UMADemoDEC_No_Car(gym.Env):
         #Big Change temperature 
         elif action == 2:
             c = self.ac.bigChange()
-        #SB Charge20
+        #Huge Change temperature 
         elif action == 3:
+            c = self.ac.hugeChange()
+        #SB Charge20
+        elif action == 4:
             c = self.sb.charge20() + self.ac.turnOff()
         #SB Charge40
-        elif action == 4:
+        elif action == 5:
             c = self.sb.charge40() + self.ac.turnOff()
         #SB Charge60
-        elif action == 5:
+        elif action == 6:
             c = self.sb.charge60() + self.ac.turnOff()
         #SB Discharge20
-        elif action == 6:
+        elif action == 7:
             c = self.sb.discharge20() + self.ac.turnOff()
         #SB Discharge40
-        elif action == 7:
+        elif action == 8:
             c = self.sb.discharge40() + self.ac.turnOff()
         #SB Discharge60
-        elif action == 8:
+        elif action == 9:
             c = self.sb.discharge60() + self.ac.turnOff()
         #Small Change Temperature and SB Charge20
-        elif action == 9:
+        elif action == 10:
             c = self.ac.smallChange() + self.sb.charge20()
         #Small Change Temperature and SB Charge40
-        elif action == 10:
+        elif action == 11:
             c = self.ac.smallChange() + self.sb.charge40()
         #Small Change Temperature and SB Charge20
-        elif action == 11:
+        elif action == 12:
             c = self.ac.smallChange() + self.sb.charge60()
         #Small Change Temperature and SB Discharge20
-        elif action == 12:
+        elif action == 13:
             c = self.ac.smallChange() + self.sb.discharge20()
         #Small Change Temperature and SB Discharge40
-        elif action == 13:
+        elif action == 14:
             c = self.ac.smallChange() + self.sb.discharge40()
         #Small Change Temperature and SB Discharge60
-        elif action == 14:
+        elif action == 15:
             c = self.ac.smallChange() + self.sb.discharge60()
         #Big Change Temperature and SB Charge20
-        elif action == 15:
+        elif action == 16:
             c = self.ac.bigChange() + self.sb.charge20()
         #Big Change Temperature and SB Charge40
-        elif action == 16:
+        elif action == 17:
             c = self.ac.bigChange() + self.sb.charge40()
         #Big Change Temperature and SB Charge60
-        elif action == 17:
+        elif action == 18:
             c = self.ac.bigChange() + self.sb.charge60()
         #Big Change Temperature and SB Discharge20
-        elif action == 18:
+        elif action == 19:
             c = self.ac.bigChange() + self.sb.discharge20()
         #Big Change Temperature and SB Discharge40
-        elif action == 19:
+        elif action == 20:
             c = self.ac.bigChange() + self.sb.discharge40()
         #Big Change Temperature and SB Discharge60
-        elif action == 20:
+        elif action == 21:
             c = self.ac.bigChange() + self.sb.discharge60()
+        #Huge Change Temperature and SB Charge20
+        elif action == 22:
+            c = self.ac.hugeChange() + self.sb.charge20()
+        #Huge Change Temperature and SB Charge40
+        elif action == 23:
+            c = self.ac.hugeChange() + self.sb.charge40()
+        #Huge Change Temperature and SB Charge60
+        elif action == 24:
+            c = self.ac.hugeChange() + self.sb.charge60()
+        #Huge Change Temperature and SB Discharge20
+        elif action == 25:
+            c = self.ac.hugeChange() + self.sb.discharge20()
+        #Huge Change Temperature and SB Discharge40
+        elif action == 26:
+            c = self.ac.hugeChange() + self.sb.discharge40()
+        #Huge Change Temperature and SB Discharge60
+        elif action == 27:
+            c = self.ac.hugeChange() + self.sb.discharge60()
         
         val = self.objective_curve[self._state] + c
         self.consumption = c

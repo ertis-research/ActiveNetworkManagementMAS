@@ -13,7 +13,11 @@ class Airconditioning():
     def bigChange(self):
         self.state = 2
         return self.consumption()
-        
+    
+    def hugeChange(self):
+        self.state = 3
+        return self.consumption()
+    
     def render(self, mode="human"):
         print("Air conditioning -> State {}, Consumption {}".format(self.state, self.consumption()))
     
