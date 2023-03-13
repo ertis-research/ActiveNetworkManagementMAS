@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Refresh" content="300">
+    <!-- Cookie #1 -->
+    <meta http-equiv="set-cookie" content="Value=_ga, Site=.grafana.net/; SameSite=None; Secure;"/>
+    <!-- Cookie #2 -->
+    <meta http-equiv="set-cookie" content="Value=_gid, Site=.grafana.net/; SameSite=None; Secure;"/>
+    <!-- Other things like title etc -->
+
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <title>Ebalance Data Monitoring</title>
+</head>
+<div class="container-fluid">
+    <h1 style="text-align: center;position:relative;"> Scenario Testing </h1>
+    {% include 'messages.html' %}
+
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="Index" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Error" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Error</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Forecasting" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Forecasting</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Models" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Models</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Consumptions" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Measurements</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <div class="py-3" style="max-width: fit-content; max-height: fit-content;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-group mb-2" width="50" style="margin-top: 50px;width:650px;text-align:left;">
+                <h3 style="text-align: center;">Model definition: </h3>
+            </div>
+            <div class="input-group mb-2" width="50" style="margin-top: 15px;width:650px;text-align:left;">
+                <h5 style="text-align: center;">Model Name(*): </h5>
+                <input id="model_name" name="model_name" type="text" class="form-control" placeholder="Model name"  aria-describedby="basic-addon2" style="margin-left: 10px">
+             </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="scenario_type" id="scenario_type1" value="0" style="text-align:left;" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Real Scenario (Storage Battery, Charging Vehicle Station and Air conditioning)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="scenario_type" id="scenario_type2" value="1">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Scenario 1 (Charging Vehicle Station and Air conditioning)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="scenario_type" id="scenario_type3" value="2">
+                    <label class="form-check-label" for="flexRadioDefault3">
+                      Scenario 2 (Storage Battery and Air conditioning)
+                    </label>
+                  </div>
+                 <div class="input-group mb-2" width="50" style="margin-top: 15px;width:650px;text-align:center;">
+                    <h5 style="text-align: center;">Flexibility(*): </h5>
+                    <input id="flex" name="flex" type="text" class="form-control"  aria-describedby="basic-addon2" style="margin-left: 35px" placeholder="20.0">
+                 </div>
+                 <div class="input-group mb-2" width="50" style="margin-top: 15px;width:650px;text-align:center;">
+                    <h5 style="text-align: center;">Battery SoC(*): </h5>
+                    <input id="soc" name="soc" type="text" class="form-control"  aria-describedby="basic-addon2" style="margin-left: 15px" placeholder="100">
+                 </div>
+                 <div class="input-group mb-2" width="50" style="margin-top: 15px;width:650px;text-align:center;">
+                    <h5 style="text-align: center;">Iterations(*): </h5>
+                    <input id="num_iterations" name="num_iterations" type="text" class="form-control"   aria-describedby="basic-addon2" style="margin-left: 35px" placeholder="2000">
+                 </div>
+                <div class="input-group-append" style="margin-left: 575px;margin-top: 15px;">
+                  <button class="btn btn-outline-success" type="submit">Submit</button>
+                </div>
+                <table class="table table-bordered" style="width: 200%; margin-top: 15px;"  >
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Scenario</th>
+                        <th scope="col">Flexibility</th>
+                        <th scope="col">StateOfCharge</th>
+                        <th scope="col">Steps</th>
+                        <th scope="col">AVG Reward</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{ d.model_name }} </td>
+                    <td>{{ d.scenario_type }} </td>
+                    <td>{{ d.flexibility }} </td>
+                    <td>{{ d.state_of_charge }} </td>
+                    <td>{{ d.steps }} </td>
+                    <td>{{ d.results }} </td>
+                </tr>
+             {% endfor %}
+                    </tbody>
+                </table>
+              
+        </form>
+    </div>
+    </div>
+</div>
+
+</body>
+
+</html>

@@ -47,3 +47,17 @@ Customize the testing parameters to your preference and specify the scenario typ
 ```python
 python test.py
 ```
+
+# Real-time data monitoring interface
+
+```python
+pip install -r requirements-website.txt
+```
+
+```python
+python manage.py runserver 0.0.0.0:[PORT]
+```
+
+![**Figure 2**: Ebalance-plus components study case.](images/Real-Time-Monitoring.png)
+
+The web interface is accessible upon request at the URL "[http://research.adabyron.uma.es:8432/](http://research.adabyron.uma.es:8432/)", where real data is included.
