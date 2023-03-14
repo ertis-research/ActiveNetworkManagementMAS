@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Refresh" content="300">
+    <!-- Cookie #1 -->
+    <meta http-equiv="set-cookie" content="Value=_ga, Site=.grafana.net/; SameSite=None; Secure;"/>
+    <!-- Cookie #2 -->
+    <meta http-equiv="set-cookie" content="Value=_gid, Site=.grafana.net/; SameSite=None; Secure;"/>
+    <!-- Other things like title etc -->
+
+    <meta charset="UTF-8">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <title>Ebalance Data Monitoring</title>
+</head>
+<h1 style="text-align: center;position:relative;"> Models error data predicting next hour</h1>
+
+<div class="container-fluid" >
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="Index" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Error" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Error</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Forecasting" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Forecasting</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Models" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Models</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Consumptions" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Measurements</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="py-3" style="max-width: fit-content;    ">
+            
+            <div class="p-10" style="display: inline-block">
+                <iframe src={{url}} width="750" height="600" frameborder="0"></iframe>
+                <iframe src={{url1}} width="750" height="600" frameborder="0"></iframe>
+            </div>
+            <div class="p-10" >
+                <iframe src={{url2}} width="750" height="600" frameborder="0"></iframe>
+                <iframe src={{url3}} width="750" height="600" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+            </body>
+    
+</html>
