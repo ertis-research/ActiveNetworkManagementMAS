@@ -1,0 +1,4 @@
+# Vars to launch
+HOST=MONGO ACCESS
+USER=USER
+PASSW=PASSW

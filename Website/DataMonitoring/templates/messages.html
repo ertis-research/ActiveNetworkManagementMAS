@@ -1,0 +1,14 @@
+  {% if messages %}
+    {% for message in messages %}
+    {% if msg == "Something wrong happened!" %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;margin-left:350px;width:1750px">
+      {{message}}
+    </div>
+    {% else  %}
+    <div class="alert alert-success" role="alert" style="text-align: center;margin-left:350px;width:1750px">
+        {{message}}
+      </div>
+      {% endif %}
+    {% endfor %}
+{% endif %}
+
